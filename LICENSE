@@ -1,6 +1,6 @@
-BSD 3-Clause License
+BSD 3-Clause License (With attibution clause as 4th clause)
 
-Copyright (c) 2023, blasdo
+Copyright (c) 2023, Blorcart-Computer-Solutions
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -15,6 +15,12 @@ modification, are permitted provided that the following conditions are met:
 3. Neither the name of the copyright holder nor the names of its
    contributors may be used to endorse or promote products derived from
    this software without specific prior written permission.
+
+4. Attribution Clause:
+   This software was created by Borja Velasco
+   When redistributing this software or any derivative work, 
+   please include a notice acknowledging the original authorship of 
+   Borja Velasco as main developer if he was code more of 51% of the code)
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
