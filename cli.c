@@ -1,23 +1,30 @@
 #include "stack_cli.h"
 
+void		execute(t_parsed command, int args)
+{
+	(void) args;
+	if (command.instruct == 0)
+		exit(0);
+}
+
 t_parsed	parser(char **command, int args)
 {
-	t_parser	to_return;
-	to_return->argc = args;
-	to_return->argv = ++command;
+	t_parsed	to_return;
+	to_return.argc = args;
+	to_return.argv = ++command;
 
-	if(!ft_strncmp(command[0], "exit\n"), 5)
+	if(!ft_strncmp(command[0], "exit\n", 5))
 	{
-		to_return->instruct = 0;
+		to_return.instruct = 0;
 	}
 	if (!ft_strncmp(command[0], "init", 4))
 	{
-		if (args < 2)
+		if (args < 3)
 		{
-			nf_error(1);
+			ft_fdprintf(2, "Too few arguments: 'init STACK_ID [CONTENT_1 ...]', if need more info use 'help init'\n");
 			return (0);
 		}
-		to_return->instruct = 1;
+		to_return.instruct = 1;
 	}
 	return (to_return);
 }
