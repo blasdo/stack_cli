@@ -1,0 +1,3 @@
+[submodule "stack_cli"]
+	path = stack_cli
+	url = git@github.com:blasdo/stack_cli.git
