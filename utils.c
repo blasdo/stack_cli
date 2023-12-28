@@ -5,7 +5,7 @@
  * reimplementation of ft_split but returns a struct
  * that includes the number of words (arguments of command)
  */
-size_t	count_args(char *cmd)
+static size_t	count_args(char *cmd)
 {
 	int	i = 0;
 	int	in_word = 0;
@@ -28,9 +28,9 @@ size_t	count_args(char *cmd)
 t_command	*split_command(char *cmd)
 {
 	t_command	*result = malloc(sizeof(t_command));
-	int			i = 0;
-	int			j = 0;
-	int			k;
+	size_t			i = 0;
+	size_t			j = 0;
+	size_t			k;
 
 	if (!result)
 		return (0);
