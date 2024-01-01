@@ -1,4 +1,5 @@
 [submodule "nombre_del_submódulo"]
     path = libft
     url = git@github.com:blasdo/libft.git
+	branch = main
 
