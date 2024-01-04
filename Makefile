@@ -1,4 +1,4 @@
-SRCS = cli.c utils.c error.c commands.c
+SRCS = cli.c stack.c utils.c error.c commands.c
 NAME = stack_cli
 LIBFT_PATH = libft
 LIBFT_LIB_PATH = $(LIBFT_PATH)/lib
@@ -6,7 +6,7 @@ LIBFT_INCLUDE_PATH = $(LIBFT_PATH)/include
 LIBFT = $(LIBFT_LIB_PATH)/libft.a
 CC = clang
 INCLUDE_FLAGS = -I$(LIBFT_INCLUDE_PATH) 
-CFLAGS = -Wall -Wextra -Werror $(INCLUDE_FLAGS)
+CFLAGS = -g3 -Wall -Wextra -Werror $(INCLUDE_FLAGS)
 LDFLAGS = -fuse-ld=lld
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

@@ -1,6 +1,5 @@
 #include "stack_cli.h"
 
-t_stack	*stacks = NULL;
 
 short	execute(t_command *command)
 {
@@ -18,6 +17,10 @@ short	execute(t_command *command)
 					return (EXCFAIL);
 				return (1);
 			}
+		case 2:
+		{
+			return(init(command));
+		}
 		default:
 			return (ERRCMD);
 	}
