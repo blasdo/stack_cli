@@ -56,5 +56,19 @@ short int	init(t_command *command)
 	return (0);
 }
 //print_stack command
-short int	print_stack(t_command command)
-{}
+short int	print_stack(t_command *command)
+{
+	t_stack	*to_print;
+	char	*name_whithout_nl;
+
+	name_whithout_nl = ft_strtrim(command->argv[1], "\n ");
+	to_print = stack_finder(name_whithout_nl);
+	if (!to_print)
+	{
+		return(ERSTACK);
+	}
+	ft_printf("%s:", to_print->identifier);
+	ft_lstiter(to_print->stack, print_node);
+	write(1, "\n", 1);
+	return (0);
+}
