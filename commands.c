@@ -88,8 +88,11 @@ short int	push_cmd(t_command *command)
 }
 short int pop_cmd(t_command *command)
 {
+	int res;
 	char *identifier = ft_strtrim(command->argv[1], "\n ");
 	if (!identifier)
 		return (ERRMEMO);
-	return (pop(identifier));
+	res = pop(identifier);
+	free (identifier);
+	return (res);
 }

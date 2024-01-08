@@ -35,7 +35,7 @@ t_command	*split_command(char *cmd)
 	if (!result)
 		return (0);
 	result->argc = count_args(cmd);
-	result->argv = malloc(sizeof(char **) * (result->argc + 1));
+	result->argv = calloc(sizeof(char **), (result->argc + 1));
 	for (; i < result->argc; ++i)
 	{
 		for (; cmd[j] == ' '; ++j);

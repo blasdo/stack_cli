@@ -42,7 +42,7 @@ short int	push(char *identifier, int value)
 	return (0);
 }
 
-short int	pop (char *identifier)
+short int	pop(char *identifier)
 {
 	t_stack *stack = stack_finder(identifier);
 	t_list	*tmp;
@@ -52,7 +52,7 @@ short int	pop (char *identifier)
 	if (stack->stack == 0)
 		return (EREMPTY);
 	tmp = stack->stack->next;
-	ft_lstdelone(stack->stack, print_node);
+	ft_lstdelone(stack->stack, print_n_free);
 	stack->stack = tmp;
 	return (0);
 }
@@ -61,6 +61,11 @@ void	print_node(void *content)
 {
 	int *content_i = content;
 	ft_printf("%i\n", *content_i);
+}
+void	print_n_free(void *content)
+{
+	print_node(content);
+	free(content);
 }
 
 void	free_stack(void *to_free)
@@ -76,6 +81,5 @@ void	free_stack(void *to_free)
 void	exit_cli(void)
 {
 	ft_lstclear(&stacks, free_stack);
-	system("leaks stack_cli");
 	exit (0);
 }

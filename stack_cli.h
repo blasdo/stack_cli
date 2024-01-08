@@ -27,6 +27,7 @@ ssize_t		command_identifier(int mode, t_command *command);
 t_command	*split_command(char *cmd);
 //list functions
 void		print_node(void *content);
+void		print_n_free(void *content);
 //STACK FUNCTIONS
 t_stack		*stack_finder(char *identifier);
 t_stack		*newstack(char *identifier, t_list *contents);

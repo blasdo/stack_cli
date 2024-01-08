@@ -6,7 +6,7 @@ LIBFT_INCLUDE_PATH = $(LIBFT_PATH)/include
 LIBFT = $(LIBFT_LIB_PATH)/libft.a
 CC = clang
 INCLUDE_FLAGS = -I$(LIBFT_INCLUDE_PATH) 
-CFLAGS = -g3 -Wall -Wextra -Werror $(INCLUDE_FLAGS)
+CFLAGS = -Wall -Wextra -Werror $(INCLUDE_FLAGS)
 LDFLAGS = -fuse-ld=lld
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

@@ -2,7 +2,7 @@
 
 void	free_cmd(t_command *command)
 {
-	size_t i = 0;
+	int i = 0;
 	while (command->argv[i])
 		free(command->argv[i++]);
 	free(command->argv);
@@ -174,8 +174,12 @@ int main(int argc, char *argv[])
 		close(fd);
 		fd = open(argv[1], O_WRONLY);
 	}
-	while ((line = get_next_line(0)))
+	ft_printf("---Stack CLI Alpha 0.1 (c)2024 bvelasco under GPLv3---\n");
+	line = (void *) 1;
+	while (line)
 	{
+		ft_printf("Stack CLI -> ");
+		line = get_next_line(0);
 		command = split_command(line);
 		if (command == NULL)
 			error(ERRMEMO);
@@ -186,11 +190,10 @@ int main(int argc, char *argv[])
 			error(cmd_id);
 		else
 			break;
+		free_cmd(command);	
 		free(line);
-		free_cmd(command);
-		line = 0;
 		command = 0;
 	}
 	close(fd);
-	return(0);
+	exit_cli();
 }
