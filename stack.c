@@ -29,8 +29,53 @@ t_stack *newstack(char *identifier, t_list *contents)
     return (result);
 }
 
+short int	push(char *identifier, int value)
+{
+	t_stack *stack = stack_finder(identifier);
+	void *content = malloc(sizeof(int));
+	if (!content)
+		return (ERRMEMO);
+	ft_memcpy(content, &value, sizeof(int));
+	if (!stack)
+		return (ERSTACK);
+	ft_lstadd_front(&(stack->stack), ft_lstnew(content)); 
+	return (0);
+}
+
+short int	pop (char *identifier)
+{
+	t_stack *stack = stack_finder(identifier);
+	t_list	*tmp;
+
+	if (!stack)
+		return (ERSTACK);
+	if (stack->stack == 0)
+		return (EREMPTY);
+	tmp = stack->stack->next;
+	ft_lstdelone(stack->stack, print_node);
+	stack->stack = tmp;
+	return (0);
+}
+
 void	print_node(void *content)
 {
 	int *content_i = content;
-	ft_printf("%i ", *content_i);
+	ft_printf("%i\n", *content_i);
+}
+
+void	free_stack(void *to_free)
+{
+	t_stack *stack = to_free; 
+
+	if (!stack)
+		return ;
+	ft_lstclear(&(stack->stack), free);
+	free(to_free);
+}
+
+void	exit_cli(void)
+{
+	ft_lstclear(&stacks, free_stack);
+	system("leaks stack_cli");
+	exit (0);
 }

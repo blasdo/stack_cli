@@ -26,7 +26,10 @@ short int	init(t_command *command)
 	int		*content;
 	t_list 	*result = NULL;
 	t_list	*tmp;
+	char	*name_without_nl = ft_strtrim(command->argv[1], "\n ");
 
+	if (!name_without_nl)
+		return (ERRMEMO);
 	i = 2;
 	while (i < command->argc)
 	{
@@ -34,7 +37,7 @@ short int	init(t_command *command)
 		if (!content)
 		{
 			ft_lstclear(&result, free);
-			return(-1);
+			return(ERRMEMO);
 		}
 		*content = ft_atoi(command->argv[i]);
 		tmp = ft_lstnew(content);
@@ -42,33 +45,51 @@ short int	init(t_command *command)
 		{
 			ft_lstclear(&result, free);
 			free(content);
-			return (-1);
+			return (ERRMEMO);
 		}
 		ft_lstadd_back(&result, tmp);
 		i++;
 	}
-	tmp = (t_list *)newstack(command->argv[1], result);
+	tmp = (t_list *)newstack(name_without_nl, result);
 	if (!tmp)
 	{
 		ft_lstclear(&result, free);
-		return (-1);
+		return (ERRMEMO);
 	}
+	free(name_without_nl);
 	return (0);
 }
 //print_stack command
 short int	print_stack(t_command *command)
 {
 	t_stack	*to_print;
-	char	*name_whithout_nl;
+	char	*name_without_nl = ft_strtrim(command->argv[1], "\n ");
 
-	name_whithout_nl = ft_strtrim(command->argv[1], "\n ");
-	to_print = stack_finder(name_whithout_nl);
+	if (!name_without_nl)
+		return (ERRMEMO);
+	to_print = stack_finder(name_without_nl);
 	if (!to_print)
 	{
 		return(ERSTACK);
 	}
-	ft_printf("%s:", to_print->identifier);
+	ft_printf("%s\n---\n", to_print->identifier);
 	ft_lstiter(to_print->stack, print_node);
-	write(1, "\n", 1);
+	write(1, "---\n", 4);
+	free(name_without_nl);
 	return (0);
+}
+
+short int	push_cmd(t_command *command)
+{
+	char	*identifier = command->argv[1];
+	int		to_push = ft_atoi(command->argv[2]);
+
+	return (push(identifier, to_push));
+}
+short int pop_cmd(t_command *command)
+{
+	char *identifier = ft_strtrim(command->argv[1], "\n ");
+	if (!identifier)
+		return (ERRMEMO);
+	return (pop(identifier));
 }

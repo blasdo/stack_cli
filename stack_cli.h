@@ -7,6 +7,8 @@
 # define ERRARGS 254
 # define ERSTACK 253
 # define EXCFAIL 252
+# define EREMPTY 251
+# define ERRMEMO -1
 
 typedef struct s_stack
 {
@@ -28,8 +30,13 @@ void		print_node(void *content);
 //STACK FUNCTIONS
 t_stack		*stack_finder(char *identifier);
 t_stack		*newstack(char *identifier, t_list *contents);
+short int	push(char *identifier, int value);
+short int			pop(char *identifier);
+void		exit_cli(void);
 //CLI COMMANDS
 short int	init(t_command *command);
 short int	set_mode(t_command *command);
 short int	print_stack(t_command *command);
+short int	push_cmd(t_command *command);
+short int	pop_cmd(t_command *command);
 #endif

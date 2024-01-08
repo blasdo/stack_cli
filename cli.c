@@ -1,6 +1,13 @@
 #include "stack_cli.h"
 
-
+void	free_cmd(t_command *command)
+{
+	size_t i = 0;
+	while (command->argv[i])
+		free(command->argv[i++]);
+	free(command->argv);
+	free(command);
+}
 short	execute(t_command *command)
 {
 	static short mode = 0;
@@ -33,6 +40,20 @@ short	execute(t_command *command)
 				return (result);
 			return (3);
 		}
+		case 4:
+		{
+			result = push_cmd(command);
+			if (result != 0)
+				return (result);
+			return (4);
+		}
+		case 5:
+		{
+			result = pop_cmd(command);
+			if (result != 0)
+				return (result);
+			return (5);
+		}
 		default:
 			return (ERRCMD);
 	}
@@ -47,7 +68,9 @@ ssize_t	command_identifier(int mode, t_command *command)
 	if (command->argc > 0)
 	{
 		if (!ft_strncmp("exit\n", command->argv[0], 4))
-			return (0);
+		{
+			exit_cli();
+		}
 		if (mode == 0)
 		{
 			if (command->argc != 2)
@@ -59,15 +82,27 @@ ssize_t	command_identifier(int mode, t_command *command)
 		{
 			if (!ft_strncmp(command->argv[0], "init", 5 ))
 			{
-				if (command->argc < 3)
+				if (command->argc < 2)
 					return (ERRARGS);
 				return (2);
 			}
-			if (!ft_strncmp(command->argv[0], "print", 5))
+			if (!ft_strncmp(command->argv[0], "print", 6))
 			{
 				if (command->argc != 2)
 					return (ERRARGS);
 				return (3);
+			}
+			if (!ft_strncmp(command->argv[0], "push", 5))
+			{
+				if (command->argc != 3)
+					return (ERRARGS);
+				return (4);
+			}
+			if (!ft_strncmp(command->argv[0], "pop", 4))
+			{
+				if (command->argc != 2)
+					return (ERRARGS);
+				return (5);
 			}
 		}
 	}
@@ -143,7 +178,7 @@ int main(int argc, char *argv[])
 	{
 		command = split_command(line);
 		if (command == NULL)
-			error(255);
+			error(ERRMEMO);
 		cmd_id = execute(command);
 		if (cmd_id > 0)
 			print_in_log(cmd_id, fd);
@@ -152,6 +187,9 @@ int main(int argc, char *argv[])
 		else
 			break;
 		free(line);
+		free_cmd(command);
+		line = 0;
+		command = 0;
 	}
 	close(fd);
 	return(0);
