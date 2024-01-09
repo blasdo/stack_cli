@@ -2,7 +2,8 @@
 ## Stack\_CLI
 Stack CLI es un programa que sirve para interactuar con pilas mediante un entorno CLI
 ### Funcionamiento básico
-El programa genera dos pilas, al ejecutarlo se crean dos pilas vacias pudiendo añadir lo que quieras a cualquiera de las dos con un inicializador, desde ese momento todos los movimientos son entre pilas  
+El programa permite crear pilas y interactuar con ellas a nivel básico con los movimientos "push" y "pop" (modo legacy, el unico existente actualmente).
+Al iniciar el programa selecciona el modo y usa los comandos que están abajo.
 #### Sistema de comandos
 Al ejecutar el programa se abrirá una "CLI" en la que podrás poner comandos, los comandos son los movimientos, sin embargo, aparte de estos hay un comando "init" `init <a|b> enteros_que_forman_la_pila`\
 Una vez se ha ejecutado init no puede volverse a ejecutar hasta cerrar el programa con `exit`, por favor, no pulses "intro" hasta que hayas decidido como inicializar
@@ -12,7 +13,7 @@ Una vez se ha ejecutado init no puede volverse a ejecutar hasta cerrar el progra
 * push ID VALOR				: envia el valor "VALOR" a la pila ID (si no existe da error)
 * pop ID					: muestra en pantalla el valor superior de la pila ID y lo elimina
 
-##### Mode 2 (orden) (no impementado en 1.0)
+##### Mode 2 (orden) (no implementado todavía)
 ###### Push
 * pa (push a)				: envia a la pila 'a' el elemento superior de la pila 'b', este movimiento elimina de 'b' este elemento.
 * pb (push b)				: envia a la pila 'b' el elemento superior de la pila 'a', este movimiento elimina de 'a' este movimiento.
