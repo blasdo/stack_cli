@@ -10,7 +10,9 @@ void	free_cmd(t_command *command)
 }
 short	execute(t_command *command)
 {
-	static short mode = 0;
+	// Al eliminar el modo 2 queda el modo 1 por defecto y el comando "mode"
+	// ya no exsite
+	static short mode = 1;
 	ssize_t identifier = command_identifier(mode, command);
 	int			result;
 
