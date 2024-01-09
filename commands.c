@@ -30,6 +30,8 @@ short int	init(t_command *command)
 
 	if (!name_without_nl)
 		return (ERRMEMO);
+	if (stack_finder(name_without_nl))
+		return (ERREXIS);
 	i = 2;
 	while (i < command->argc)
 	{

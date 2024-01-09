@@ -7,7 +7,8 @@
 # define ERRARGS 254
 # define ERSTACK 253
 # define EXCFAIL 252
-# define EREMPTY 251
+# define ERREXIS 251
+# define EREMPTY 250
 # define ERRMEMO -1
 
 typedef struct s_stack

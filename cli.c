@@ -149,9 +149,22 @@ void	print_in_log(unsigned short cmd_id, int fd)
 		if (cmd_id == ERSTACK)
 		{
 			if (fd != 1)
-				ft_fdprintf(fd, "STACK NOT FOUND\n");
+				ft_fdprintf(fd, "WARNING: STACK NOT FOUND\n");
 			ft_fdprintf(2, "STACK NOT FOUND\n");
 		}
+		if (cmd_id == ERREXIS)
+		{
+		   if (fd != 1)
+			   ft_fdprintf(fd, "WARNING: STACK ALREDY EXISTS\n");
+		   ft_fdprintf(2, "STACK ALREDY EXISTS\n");
+		}
+		if (cmd_id == EREMPTY)
+		{
+			if (fd != 1)
+				ft_fdprintf(fd, "WARNING: STACK IS EMPTY\n");
+			ft_fdprintf(2, "STACK IS EMPTY\n");
+		}
+
 		//add all errors
 	}
 	return ;

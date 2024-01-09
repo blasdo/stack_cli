@@ -1,4 +1,4 @@
-SRCS = cli.c stack.c utils.c error.c commands.c
+SRCS = cli.c stack.c utils.c commands.c
 NAME = stack_cli
 LIBFT_PATH = libft
 LIBFT_LIB_PATH = $(LIBFT_PATH)/lib

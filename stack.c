@@ -20,9 +20,11 @@ t_stack *stack_finder(char *identifier)
 t_stack *newstack(char *identifier, t_list *contents)
 {
     t_stack *result;
+	if (stack_finder(identifier))
+		return (0);
     result = malloc(sizeof(t_stack));
     if (!result)
-        return (NULL);
+        return (0);
     ft_strlcpy(result->identifier, identifier, 10);
     result->stack = contents;
     ft_lstadd_back(&stacks, ft_lstnew(result));
