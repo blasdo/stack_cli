@@ -12,6 +12,8 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(LIBFT):
+	git submodule init libft
+	git submodule update libft
 	make -C $(LIBFT_PATH)
 $(NAME): $(LIBFT) $(OBJS)
 	if [ $(shell uname) = Linux ]; then \
