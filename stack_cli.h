@@ -16,6 +16,14 @@ typedef struct s_stack
 	char	identifier[10];
 	t_list	*stack;
 }				t_stack;
+
+typedef struct s_mode
+{
+	int		push_swap;
+	char	*push_swap_args;
+	int		log_fd;
+}				t_mode;
+
 typedef struct	s_command
 {
 	size_t	argc;

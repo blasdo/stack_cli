@@ -176,6 +176,7 @@ void	error(unsigned short errnum)
 {
 	(void) errnum;
 }
+
 int main(int argc, char *argv[])
 {
 	char		*line;
@@ -183,9 +184,9 @@ int main(int argc, char *argv[])
 	t_command	*command;
 	int			fd = 0;
 
-	if (argc == 2)
+	if (argc >= 2)
 	{
-		fd = open(argv[1], O_CREAT, S_IRWXU);
+		fd = open(argv[1], O_CREAT, S_IWUSR +  S_IRUSR);
 		close(fd);
 		fd = open(argv[1], O_WRONLY);
 	}
