@@ -194,8 +194,7 @@ int main(int argc, char *argv[])
 	line = (void *) 1;
 	while (line)
 	{
-		ft_printf("Stack CLI -> ");
-		line = get_next_line(0);
+		line = readline("Stack CLI -> ");
 		command = split_command(line);
 		if (command == NULL)
 			error(ERRMEMO);

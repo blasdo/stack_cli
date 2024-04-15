@@ -2,6 +2,9 @@
 # define STACK_CLI_H
 # include <libft.h>
 # include <fcntl.h>
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 // CONSTANTS
 # define ERRCMD 255
 # define ERRARGS 254
