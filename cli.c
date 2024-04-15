@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
 		close(fd);
 		fd = open(argv[1], O_WRONLY);
 	}
-	ft_printf("---Stack CLI Alpha 0.1 (c)2024 bvelasco under GPLv3---\n");
+	ft_printf("---Stack CLI Alpha 0.2.0 (c)2024 bvelasco under GPLv3---\n");
 	line = (void *) 1;
 	while (line)
 	{
