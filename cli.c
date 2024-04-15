@@ -200,7 +200,11 @@ int main(int argc, char *argv[])
 			error(ERRMEMO);
 		cmd_id = execute(command);
 		if (cmd_id > 0)
+		{
+			if (cmd_id < 127)
+			add_history(line);
 			print_in_log(cmd_id, fd);
+		}
 		else if (cmd_id < 0)
 			error(cmd_id);
 		else
