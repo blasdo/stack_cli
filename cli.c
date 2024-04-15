@@ -157,7 +157,7 @@ void	print_in_log(unsigned short cmd_id, int fd)
 		if (cmd_id == ERREXIS)
 		{
 		   if (fd != 1)
-			   ft_fdprintf(fd, "WARNING: STACK ALREDY EXISTS\n");
+			   ft_fdprintf(fd, "WARNING: STACK ALREADY EXISTS\n");
 		   ft_fdprintf(2, "STACK ALREDY EXISTS\n");
 		}
 		if (cmd_id == EREMPTY)
