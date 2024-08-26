@@ -4,11 +4,10 @@ LIBFT_PATH = libft
 LIBFT_LIB_PATH = $(LIBFT_PATH)/lib
 LIBFT_INCLUDE_PATH = $(LIBFT_PATH)/include
 LIBFT = $(LIBFT_LIB_PATH)/libft.a
-CC = gcc
+CC = clang
 INCLUDE_FLAGS = -I$(LIBFT_INCLUDE_PATH) 
 CFLAGS = -g3 -Wall -Wextra -Werror $(INCLUDE_FLAGS)
 LFLAGS =  -L$(LIBFT_LIB_PATH) -lft -lreadline
-LDFLAGS = -fuse-ld=lld
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
@@ -17,11 +16,7 @@ $(LIBFT):
 	git submodule update libft
 	make -C $(LIBFT_PATH)
 $(NAME): $(LIBFT) $(OBJS)
-	if [ $(shell uname) = Linux ]; then \
-	 $(CC) $(LDFLAGS) $(CFLAGS) $(LFLAGS) $(OBJS) -o $(NAME); \
-	else \
-	 $(CC) $(CFLAGS) $(LFLAGS)  $(OBJS) -o $(NAME); \
-	fi
+	 $(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LFLAGS)
 clean:
 	make -C $(LIBFT_PATH) fclean
 	rm -f $(OBJS)
