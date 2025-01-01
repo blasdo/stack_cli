@@ -8,11 +8,14 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    uses: libreadline
 
     steps:
     - uses: actions/checkout@v3
-    - name: make
+
+    -name: Install dependencies
+      run: sudo apt install -y libreadline-dev
+    
+    -name: make
       run: make
+      
