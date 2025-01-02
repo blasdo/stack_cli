@@ -1,8 +1,5 @@
 # ES
 ## Stack\_CLI
-### ATENCIÓN
-ESTE PROGRAMA YA NO SE ENCUENTRA EN DESARROLLO ACTIVO Y SOLO SE ACTUALIZA AL DETECTAR UN PROBLEMA.
-
 Stack CLI es un programa que sirve para interactuar con pilas mediante un entorno CLI
 ### Funcionamiento básico
 El programa permite crear pilas y interactuar con ellas a nivel básico con los movimientos "push" y "pop" (modo legacy, el unico existente actualmente).
