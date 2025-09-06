@@ -5,9 +5,9 @@ LIBFT_LIB_PATH = $(LIBFT_PATH)/lib
 LIBFT_INCLUDE_PATH = $(LIBFT_PATH)/include
 LIBFT = $(LIBFT_LIB_PATH)/libft.a
 CC = clang
-INCLUDE_FLAGS = -I$(LIBFT_INCLUDE_PATH) 
+INCLUDE_FLAGS += -I/usr/local/include -I$(LIBFT_INCLUDE_PATH) 
 CFLAGS = -Wall -Wextra -Werror $(INCLUDE_FLAGS)
-LFLAGS =  -L$(LIBFT_LIB_PATH) -lft -lreadline
+LFLAGS =  -L/usr/local/lib -L$(LIBFT_LIB_PATH) -lft -lreadline
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
