@@ -1,5 +1,8 @@
 #include "stack_cli.h"
 
+
+char *cmds[] = {"exit", "init", "print", "push", "pop", "help"};
+
 void	free_cmd(t_command *command)
 {
 	int i = 0;
@@ -8,26 +11,34 @@ void	free_cmd(t_command *command)
 	free(command->argv);
 	free(command);
 }
+
+
+/*
+ * This function ensures that the command exists and its valid
+ */
+
+ssize_t	command_identifier(t_command *command)
+{
+	if (command->argc > 0)
+	{
+		for (int i = 0; cmds[i]; i++)
+		{
+			if (!ft_strncmp(cmds[i], command->argv[0], ft_strlen(cmds[i])))
+				return (i);
+		}
+	}
+	return (ERRCMD);
+}
 short	execute(t_command *command)
 {
-	// Al eliminar el modo 2 queda el modo 1 por defecto y el comando "mode"
-	// ya no exsite
-	static short mode = 1;
-	ssize_t identifier = command_identifier(mode, command);
+	ssize_t identifier = command_identifier(command);
 	int			result;
 
 	switch (identifier)
 	{
 		case 0:
-			return (0);
+			exit_cli();
 		case 1:
-		{
-			mode = set_mode(command);
-			if (mode == 0)
-				return (EXCFAIL);
-			return (1);
-		}
-		case 2:
 		{
 			result = init(command);
 			if (result == 0)
@@ -35,81 +46,42 @@ short	execute(t_command *command)
 			else
 				return(result);
 		}
-		case 3:
+		case 2:
 		{
 			result = print_stack(command);
 			if  (result != 0)
 				return (result);
 			return (3);
 		}
-		case 4:
+		case 3:
 		{
 			result = push_cmd(command);
 			if (result != 0)
 				return (result);
 			return (4);
 		}
-		case 5:
+		case 4:
 		{
 			result = pop_cmd(command);
 			if (result != 0)
 				return (result);
 			return (5);
 		}
+		case 5:
+		{
+			result = print_help(command);
+			if (result != 0)
+				return (result);
+			return (6);
+			
+		}
+		case ERRARGS:
+			return (ERRARGS);
 		default:
 			return (ERRCMD);
 	}
 }
 
-/*
- * This function ensures that the command exists and its valid
- */
-
-ssize_t	command_identifier(int mode, t_command *command)
-{
-	if (command->argc > 0)
-	{
-		if (!ft_strncmp("exit\n", command->argv[0], 4))
-		{
-			exit_cli();
-		}
-		if (mode == 0)
-		{
-			if (command->argc != 2)
-				return (ERRARGS);
-			else if (!ft_strncmp(command->argv[0], "mode", 5))
-				return (1);
-		}
-		else if (mode == 1)
-		{
-			if (!ft_strncmp(command->argv[0], "init", 5 ))
-			{
-				if (command->argc < 2)
-					return (ERRARGS);
-				return (2);
-			}
-			if (!ft_strncmp(command->argv[0], "print", 6))
-			{
-				if (command->argc != 2)
-					return (ERRARGS);
-				return (3);
-			}
-			if (!ft_strncmp(command->argv[0], "push", 5))
-			{
-				if (command->argc != 3)
-					return (ERRARGS);
-				return (4);
-			}
-			if (!ft_strncmp(command->argv[0], "pop", 4))
-			{
-				if (command->argc != 2)
-					return (ERRARGS);
-				return (5);
-			}
-		}
-	}
-	return (ERRARGS);
-}
 
 
 /*
@@ -166,6 +138,12 @@ void	print_in_log(unsigned short cmd_id, int fd)
 				ft_fdprintf(fd, "WARNING: STACK IS EMPTY\n");
 			ft_fdprintf(2, "STACK IS EMPTY\n");
 		}
+		if (cmd_id == ERRARGS)
+		{
+			if (fd != 1)
+				ft_fdprintf(fd, "WARNING: INVALID ARGS\n");
+			ft_fdprintf(2, "BAD ARGS\n");
+		}
 
 		//add all errors
 	}
@@ -186,9 +164,7 @@ int main(int argc, char *argv[])
 
 	if (argc >= 2)
 	{
-		fd = open(argv[1], O_CREAT, S_IWUSR +  S_IRUSR);
-		close(fd);
-		fd = open(argv[1], O_WRONLY);
+		fd = open(argv[1], O_CREAT, 0644);
 	}
 	ft_printf("---Stack CLI Alpha 0.2.0 (c)2024 bvelasco under GPLv3---\n");
 	line = (void *) 1;
@@ -202,7 +178,7 @@ int main(int argc, char *argv[])
 		if (cmd_id > 0)
 		{
 			if (cmd_id < 127)
-			add_history(line);
+				add_history(line);
 			print_in_log(cmd_id, fd);
 		}
 		else if (cmd_id < 0)

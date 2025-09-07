@@ -10,12 +10,6 @@ short int	set_mode(t_command *command)
 		ft_printf("The mode is now \"LEGACY\"\n");
 		return (1);
 	}
-	else if (!ft_strncmp("order", mode, 5) || !ft_strncmp("Order", mode, 5) || \
-			!ft_strncmp("2", mode, 1))
-	{
-		ft_printf("The mode is now \"ORDER\"\n");
-		return (2);
-	}
 	return (0);
 }
 
@@ -61,6 +55,7 @@ short int	init(t_command *command)
 	free(name_without_nl);
 	return (0);
 }
+
 //print_stack command
 short int	print_stack(t_command *command)
 {
@@ -97,4 +92,10 @@ short int pop_cmd(t_command *command)
 	res = pop(identifier);
 	free (identifier);
 	return (res);
+}
+
+short int print_help(t_command *command)
+{
+	(void) command;
+	return 0;
 }

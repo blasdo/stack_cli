@@ -1,6 +1,6 @@
 #ifndef STACK_CLI_H
 # define STACK_CLI_H
-# include <libft.h>
+# include "libft/include/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <readline/readline.h>
@@ -13,6 +13,8 @@
 # define ERREXIS 251
 # define EREMPTY 250
 # define ERRMEMO -1
+
+extern char *cmds[];
 
 typedef struct s_stack
 {
@@ -35,7 +37,7 @@ typedef struct	s_command
 
 int			main(int argc, char *argv[]);
 void		executer(t_command *command);
-ssize_t		command_identifier(int mode, t_command *command);
+ssize_t		command_identifier(t_command *command);
 t_command	*split_command(char *cmd);
 //list functions
 void		print_node(void *content);
@@ -52,4 +54,5 @@ short int	set_mode(t_command *command);
 short int	print_stack(t_command *command);
 short int	push_cmd(t_command *command);
 short int	pop_cmd(t_command *command);
+short int	print_help(t_command *command);
 #endif
