@@ -10,8 +10,8 @@ t_stack *stack_finder(char *identifier)
     current = stacks;
     while (current)
     {
-        if (!ft_strncmp(((t_stack *)(current->content))->identifier, identifier, 9))
-            return(current->content);
+        if (!ft_strncmp(((t_stack *)(current->content.oth))->identifier, identifier, 9))
+            return(current->content.oth);
         current = current->next;
     }
     return (NULL);

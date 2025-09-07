@@ -52,12 +52,7 @@ t_command	*split_command(char *cmd)
 	result->argv = calloc(sizeof(char **), (result->argc + 1));
 	for (; i < result->argc; ++i)
 	{
-		//while (cmd[j] == ' ')
-		//	j++;
-		//k = j;
-		//while (cmd[k] != '\0' && cmd[k] != ' ')
-		//	k++;
-		result->argv[i] = get_next_word(cmd, &j);// ft_substr(cmd, j, k-j);
+		result->argv[i] = get_next_word(cmd, &j);
 	}
 	return (result);
 }

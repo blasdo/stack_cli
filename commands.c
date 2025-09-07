@@ -103,5 +103,5 @@ short int print_help(t_command *command)
 		"push <stk> <val>    | Push 'val' in the top of 'stk'\n",
 		"pop <stk>           | Pop (remove and return) the top of 'stk'\n",
 		"help                | Shows this menu\n");
-	return 0;
+	return (0);
 }

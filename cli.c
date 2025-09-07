@@ -75,8 +75,6 @@ short	execute(t_command *command)
 			return (6);
 			
 		}
-		case ERRARGS:
-			return (ERRARGS);
 		default:
 			return (ERRCMD);
 	}
