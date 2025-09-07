@@ -1,3 +1,4 @@
+#include "libft/include/libft.h"
 #include "stack_cli.h"
 #include "string.h"
 
@@ -25,12 +26,25 @@ static size_t	count_args(char *cmd)
 	return (words);
 }
 
+char *get_next_word(char *cmd, size_t *startpos)
+{
+	size_t spos = *startpos;
+	size_t epos;
+
+	while (cmd[spos] != '\0' && ft_isspace(cmd[spos]))
+		spos++;
+	epos = spos;
+	while (cmd[epos] != '\0' && !ft_isspace(cmd[epos]))
+		epos++;
+	*startpos = epos;
+	return ft_substr(cmd, spos, epos - spos);
+}
+
 t_command	*split_command(char *cmd)
 {
 	t_command	*result = malloc(sizeof(t_command));
 	size_t			i = 0;
 	size_t			j = 0;
-	size_t			k;
 
 	if (!result)
 		return (0);
@@ -38,11 +52,7 @@ t_command	*split_command(char *cmd)
 	result->argv = calloc(sizeof(char **), (result->argc + 1));
 	for (; i < result->argc; ++i)
 	{
-		for (; cmd[j] == ' '; ++j);
-		k = j;
-		for (; cmd[k] != '\0' && cmd[k] != ' '; ++k);
-		result->argv[i] = ft_substr(cmd, j, k-j);
-		j = ++k;
+		result->argv[i] = get_next_word(cmd, &j);
 	}
 	return (result);
 }
