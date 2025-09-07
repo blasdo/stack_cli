@@ -31,7 +31,7 @@ char *get_next_word(char *cmd, size_t *startpos)
 	size_t spos = *startpos;
 	size_t epos;
 
-	while(cmd[spos] != '\0' && ft_isspace(cmd[spos]))
+	while (cmd[spos] != '\0' && ft_isspace(cmd[spos]))
 		spos++;
 	epos = spos;
 	while (cmd[epos] != '\0' && !ft_isspace(cmd[epos]))
