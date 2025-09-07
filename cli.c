@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
 	{
 		fd = open(argv[1], O_CREAT | O_WRONLY, 0644);
 	}
-	ft_printf("---Stack CLI Alpha 0.2.0 (c)2024 bvelasco under GPLv3---\n");
+	ft_printf("---Stack CLI Alpha 0.2.0 (c)2025 bvelasco under BSD 3 Clause---\n");
 	line = (void *) 1;
 	while (line)
 	{
