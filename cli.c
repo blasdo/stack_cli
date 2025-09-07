@@ -169,6 +169,8 @@ int main(int argc, char *argv[])
 	while (line)
 	{
 		line = readline("Stack CLI -> ");
+		if (!line)
+			break;
 		command = split_command(line);
 		if (command == NULL)
 			error(ERRMEMO);
