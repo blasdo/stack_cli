@@ -97,5 +97,11 @@ short int pop_cmd(t_command *command)
 short int print_help(t_command *command)
 {
 	(void) command;
+	printf("\nHELP\n%s%s%s%s%s\n",
+		"init <stk> ...      | Init the stack 'stk' with the values in the variadic functions (must be integers)\n",
+		"print <stk>         | Prints the stack 'stk'\n",
+		"push <stk> <val>    | Push 'val' in the top of 'stk'\n",
+		"pop <stk>           | Pop (remove and return) the top of 'stk'\n",
+		"help                | Shows this menu\n");
 	return 0;
 }
