@@ -11,3 +11,9 @@ Al ejecutar el programa se abrirá una "CLI" en la que podrás poner comandos, l
 * `init ID [valor1 valor2...]  : crea una pila con el nombre "ID" y le asigana los valores (si los hay).`
 * `push ID VALOR               : envia el valor "VALOR" a la pila ID (si no existe da error).`
 * `pop ID                      : muestra en pantalla el valor superior de la pila ID y lo elimina.`
+
+# Información Importante
+
+Este proyecto pasa a formar parte de Ultima Insula.
+En consecuencia, dejará de actualizarse en github.
+Este es el último commit con esta licencia.
